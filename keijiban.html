@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>食物アレルギー掲示板</title>
+</head>
+<body>
+    <h2>食物アレルギー掲示板</h2>
+    <h1>アレルギー検索</h1>
+    <form action="keijiban.php" method="get">
+        <label for="allergy">アレルギー:</label><br>
+        <select name="allergy" id="allergy" required>
+            <option value="">関係するものを選んでください</option>
+            <option value="えび">えび</option>
+            <option value="かに">かに</option>
+            <option value="くるみ">くるみ</option>
+            <option value="小麦">小麦</option>
+            <option value="そば">そば</option>
+            <option value="たまご">たまご</option>
+            <option value="乳製品">乳製品</option>
+            <option value="ピーナッツ">ピーナッツ</option>
+            <option value="謎">謎</option>
+            <option value="その他">その他(投稿で明示してください)</option>
+        </select><br>
+        <input type="submit" value="検索">
+    </form>
+    <button onclick="resetPage()">検索前の画面に戻る</button>
+    <h2>掲示板の投稿</h2>
+    <div id="posts">
+    </div>
+
+    <p>食物アレルギーに関する投稿はこちらから！</p>
+    <form action="keijiban.php" method="post">
+        <label for="name">ニックネーム:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="allergy">アレルギー:</label><br>
+        <select name="allergy" id="allergy" required>
+            <option value="">関係するものを選んでください</option>
+            <option value="えび" id="ebi">えび</option>
+            <option value="かに" id="kani">かに</option>
+            <option value="くるみ" id="kurumi">くるみ</option>
+            <option value="小麦" id="komugi">小麦</option>
+            <option value="そば" id="soba">そば</option>
+            <option value="たまご" id="tamago">たまご</option>
+            <option value="乳製品" id="nyuuseihin">乳製品</option>
+            <option value="ピーナッツ" id="pi-nattu">ピーナッツ</option>
+            <option value="謎" id="nazo">謎</option>
+            <option value="その他" id="sonota">その他(投稿で明示してください)</option>
+        </select><br><br>
+        
+        <label for="message">メッセージ:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+        
+        <input type="submit" value="投稿する">
+    </form>
+
+    <script>
+        function loadPosts() {
+            fetch('keijiban.php?action=load')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('posts').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading posts:', error));
+        }
+
+        function resetPage() {
+            document.getElementById('allergy').value = "";
+            loadPosts();
+        }
+
+        loadPosts();
+        setInterval(loadPosts, 5000);
+    </script>
+</body>
+</html>
