@@ -1,0 +1,3 @@
+<strong>ニックネーム:</strong> A<br><strong>アレルギー:</strong> えび<br><strong>メッセージ:</strong> エビ食べたい<br><hr>
+<strong>ニックネーム:</strong> A<br><strong>アレルギー:</strong> かに<br><strong>メッセージ:</strong> カニ食べたい<br><hr>
+<strong>ニックネーム:</strong> A<br><strong>アレルギー:</strong> そば<br><strong>メッセージ:</strong> 蕎麦食べたい<br><hr>
